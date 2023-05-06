@@ -1,3 +1,3 @@
 from .Body import Body
-from .Dimenssion2D import Dimenssion2D
+from .Dimension2D import Dimension2D
 from .Bounds import Bounds

@@ -1,4 +1,4 @@
-from Models import Body, Dimenssion2D, Bounds
+from Models import Body, Dimension2D, Bounds
 from Methods import Verlet
 
 import logging
@@ -18,8 +18,8 @@ def create_random_bodies(num) -> list[Body]:
         name = f"Body {i}"
         mass = randint(1, 100)
         radius = randint(10, 20)
-        position = Dimenssion2D(randint(0, 1280), randint(0, 720))
-        velocity = Dimenssion2D(randint(-100, 100), randint(-100, 100))
+        position = Dimension2D(randint(0, 1280), randint(0, 720))
+        velocity = Dimension2D(randint(-100, 100), randint(-100, 100))
         color = (randint(0, 255), randint(0, 255), randint(0, 255))
 
         body = Body(name, mass, radius, position, velocity, color)     
@@ -32,7 +32,7 @@ def create_random_bodies(num) -> list[Body]:
 
 NUMBER_OF_BODIES = 5
 bodies = create_random_bodies(NUMBER_OF_BODIES)
-bounds = Bounds(Dimenssion2D(0, 0), Dimenssion2D(1280, 720), 10)
+bounds = Bounds(Dimension2D(0, 0), Dimension2D(1280, 720), 10)
 verlete = Verlet(bodies, 1/60., bounds)
 window = pyglet.window.Window()
 window.set_size(1280, 720)
@@ -48,7 +48,7 @@ def on_draw():
         
         body_circle = shapes.Circle(x=body.position.x, y=body.position.y, radius=body.radius, color=color, batch=main_bathc)
 
-        force = body.aceleration.scale(0.2)
+        force = body.aceleration.scale(0.8)
         if force.magnitude() > 200:
             force = force.normalize().scale(200)
         force_line = shapes.Line(x=body.position.x, y=body.position.y, x2=body.position.x + force.x, y2=body.position.y + force.y, width=1, color=color, batch=main_bathc)

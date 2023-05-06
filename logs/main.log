@@ -1,8 +1,32 @@
-INFO:main:Created body: Body: Body 0 with mass 64 and radius 11 at position (599, 582) with velocity (-35, 73)
-INFO:main:Created body: Body: Body 1 with mass 85 and radius 14 at position (445, 436) with velocity (25, 100)
-INFO:main:Created body: Body: Body 2 with mass 72 and radius 12 at position (1174, 363) with velocity (-51, -35)
-INFO:main:Created body: Body: Body 3 with mass 46 and radius 12 at position (1023, 702) with velocity (-45, 62)
-INFO:main:Created body: Body: Body 4 with mass 49 and radius 15 at position (432, 683) with velocity (-67, 41)
+INFO:main:Created body: Body: Body 0 with mass 25 and radius 15 at position (298, 514) with velocity (-38, 68)
+INFO:main:Created body: Body: Body 1 with mass 50 and radius 15 at position (288, 89) with velocity (47, -66)
+INFO:main:Created body: Body: Body 2 with mass 75 and radius 20 at position (668, 149) with velocity (47, -67)
+INFO:main:Created body: Body: Body 3 with mass 59 and radius 18 at position (1136, 716) with velocity (-92, -20)
+INFO:main:Created body: Body: Body 4 with mass 66 and radius 14 at position (176, 369) with velocity (-38, 8)
+INFO:main:Created 5 bodies
+INFO:main:
+
+INFO:main:Created body: Body: Body 0 with mass 55 and radius 18 at position (915, 24) with velocity (-33, -57)
+INFO:main:Created body: Body: Body 1 with mass 7 and radius 10 at position (74, 63) with velocity (79, -85)
+INFO:main:Created body: Body: Body 2 with mass 13 and radius 11 at position (686, 642) with velocity (-46, 25)
+INFO:main:Created body: Body: Body 3 with mass 41 and radius 13 at position (966, 696) with velocity (-50, -1)
+INFO:main:Created body: Body: Body 4 with mass 49 and radius 14 at position (1190, 501) with velocity (85, -91)
+INFO:main:Created 5 bodies
+INFO:main:
+
+INFO:main:Created body: Body: Body 0 with mass 47 and radius 16 at position (1079, 471) with velocity (64, 29)
+INFO:main:Created body: Body: Body 1 with mass 43 and radius 13 at position (87, 373) with velocity (86, -2)
+INFO:main:Created body: Body: Body 2 with mass 51 and radius 14 at position (327, 438) with velocity (80, 89)
+INFO:main:Created body: Body: Body 3 with mass 100 and radius 17 at position (101, 293) with velocity (48, 70)
+INFO:main:Created body: Body: Body 4 with mass 94 and radius 18 at position (396, 188) with velocity (-14, -85)
+INFO:main:Created 5 bodies
+INFO:main:
+
+INFO:main:Created body: Body: Body 0 with mass 9 and radius 17 at position (1078, 339) with velocity (-52, 88)
+INFO:main:Created body: Body: Body 1 with mass 92 and radius 19 at position (671, 493) with velocity (-80, 4)
+INFO:main:Created body: Body: Body 2 with mass 40 and radius 19 at position (1019, 528) with velocity (47, -21)
+INFO:main:Created body: Body: Body 3 with mass 4 and radius 18 at position (412, 33) with velocity (49, 9)
+INFO:main:Created body: Body: Body 4 with mass 92 and radius 19 at position (1269, 403) with velocity (-68, -51)
 INFO:main:Created 5 bodies
 INFO:main:
 

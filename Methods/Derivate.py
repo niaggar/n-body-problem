@@ -1,4 +1,4 @@
-from Models import Dimenssion2D
+from Models import Dimension2D
 
 
 class Derivate:
@@ -9,7 +9,7 @@ class Derivate:
         self.modelFunction = modelFunction
         self.precision = precision
     
-    def partial(self, point: Dimenssion2D) -> Dimenssion2D:
+    def partial(self, point: Dimension2D) -> Dimension2D:
         dx = self.precision
         dy = self.precision
 
@@ -25,4 +25,4 @@ class Derivate:
         derivateY = (yh - y0) / dy
         point.y -= dy
 
-        return Dimenssion2D(derivateX, derivateY)
+        return Dimension2D(derivateX, derivateY)

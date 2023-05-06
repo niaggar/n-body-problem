@@ -1,4 +1,4 @@
-from Models import Body, Bounds, Dimenssion2D
+from Models import Body, Bounds, Dimension2D
 from .Potencial import Potencial
 from .Derivate import Derivate
 
@@ -22,10 +22,10 @@ class Verlet:
         self.potencial = potencialModel
         self.derivate = Derivate(self.potencial, 0.001)
 
-    def calculate_aceleration(self) -> list[Dimenssion2D]:
-        acelerations: list[Dimenssion2D] = []
+    def calculate_aceleration(self) -> list[Dimension2D]:
+        acelerations: list[Dimension2D] = []
         for body in self.list_bodies:
-            body_aceleration = Dimenssion2D(0, 0)
+            body_aceleration = Dimension2D(0, 0)
             
             for other_body in self.list_bodies:
                 if body != other_body:
@@ -45,7 +45,7 @@ class Verlet:
         for body in self.list_bodies:
             body_aceleration_k = aceleration_k[self.list_bodies.index(body)]
 
-            new_position = Dimenssion2D(0, 0)
+            new_position = Dimension2D(0, 0)
             new_position.x = body.position.x + body.velocity.x * self.dt + (1/2) * body_aceleration_k.x * self.dt**2
             new_position.y = body.position.y + body.velocity.y * self.dt + (1/2) * body_aceleration_k.y * self.dt**2
 
@@ -62,7 +62,7 @@ class Verlet:
                     m1 = body.mass
                     m2 = body.mass
 
-                    u1 = Dimenssion2D(0, 0)
+                    u1 = Dimension2D(0, 0)
                     u1.x = (v1x * (m1 - m2) + v2x * (2 * m2)) / (m1 + m2)
                     u1.y = (v1y * (m1 - m2) + v2y * (2 * m2)) / (m1 + m2)
                     body.velocity = u1
@@ -81,11 +81,11 @@ class Verlet:
                         v2y = other_body.velocity.y
                         m2 = other_body.mass
                         
-                        u1 = Dimenssion2D(0, 0)
+                        u1 = Dimension2D(0, 0)
                         u1.x = (v1x * (m1 - m2) + v2x * (2 * m2)) / (m1 + m2)
                         u1.y = (v1y * (m1 - m2) + v2y * (2 * m2)) / (m1 + m2)
 
-                        u2 = Dimenssion2D(0, 0)
+                        u2 = Dimension2D(0, 0)
                         u2.x = (v2x * (m2 - m1) + v1x * (2 * m1)) / (m1 + m2)
                         u2.y = (v2y * (m2 - m1) + v1y * (2 * m1)) / (m1 + m2)
 

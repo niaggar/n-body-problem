@@ -1,5 +1,5 @@
 import logging
-from .Dimenssion2D import Dimenssion2D
+from .Dimension2D import Dimension2D
 
 
 class Body:
@@ -8,13 +8,13 @@ class Body:
     mass: float = 0
     radius: float = 0
     color: tuple[float] = (0, 0, 0)
-    position: Dimenssion2D = Dimenssion2D(0, 0)
-    velocity: Dimenssion2D = Dimenssion2D(0, 0)
-    aceleration: Dimenssion2D = Dimenssion2D(0, 0)
+    position: Dimension2D = Dimension2D(0, 0)
+    velocity: Dimension2D = Dimension2D(0, 0)
+    aceleration: Dimension2D = Dimension2D(0, 0)
     path: list = []
     _distance: float = 0
     
-    def __init__(self, name: str, mass: float, radius: float, position: Dimenssion2D, velocity: Dimenssion2D, color: tuple[float]=(0, 0, 0)):
+    def __init__(self, name: str, mass: float, radius: float, position: Dimension2D, velocity: Dimension2D, color: tuple[float]=(0, 0, 0)):
         self.name = name
         self.mass = mass
         self.radius = radius
@@ -26,7 +26,7 @@ class Body:
     def distance(self, other_body):
         return self.position.distance(other_body.position)
     
-    def add_path(self, position: Dimenssion2D):
+    def add_path(self, position: Dimension2D):
         if self._distance == 4:
             self._distance = 0
             self.path.append((position.x, position.y))
