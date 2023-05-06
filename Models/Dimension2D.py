@@ -37,3 +37,8 @@ class Dimension2D:
             return self.x * value.x + self.y * value.y
         else:
             raise Exception("Invalid operation")
+    
+    def __eq__(self, other):
+        if isinstance(other, Dimension2D):
+            return self.x == other.x and self.y == other.y
+        return False

@@ -1,4 +1,5 @@
 from Models import Dimension2D
+import math
 
 
 class Potencial:
@@ -15,4 +16,10 @@ class Potencial:
 
     def calculate(self, point: Dimension2D):
         distance = point.distance(self.source)
+
+        # morse_potencial = self.morse_potencial(distance)
+        # return morse_potencial
         return -1 * (self.G * self.M) / (distance)**(1)
+    
+    def morse_potencial(self, distance):
+        return -1 * (self.G * self.M * (1 - math.pow(math.e, -1/(self.G * self.M) * (distance - (self.G * self.M))))**2 - self.G * self.M)

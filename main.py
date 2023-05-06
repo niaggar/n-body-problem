@@ -11,31 +11,43 @@ from random import randint
 logging.basicConfig(filename='.\\logs\\main.log', filemode='w', level=logging.DEBUG)
 logger = logging.getLogger("main")
 logger.setLevel(logging.DEBUG)
+window_size = (0, 0)
 
 def create_random_bodies(num) -> list[Body]:
+    global window_size
+
     bodies: list[Body] = []
     for i in range(num):
         name = f"Body {i}"
-        mass = randint(1, 100)
-        radius = randint(10, 20)
-        position = Dimension2D(randint(0, 1280), randint(0, 720))
-        velocity = Dimension2D(randint(-100, 100), randint(-100, 100))
+        radius = randint(10, 50)
+        mass = radius * 30
+        velocity = Dimension2D(randint(-200, 200), randint(-200, 200))
         color = (randint(0, 255), randint(0, 255), randint(0, 255))
-
+        position = Dimension2D(randint(0, window_size[0]), randint(0, window_size[1]))
+        for body in bodies:
+            if body.position == position:
+                position = Dimension2D(randint(0, window_size[0]), randint(0, window_size[1]))
+        
         body = Body(name, mass, radius, position, velocity, color)     
         bodies.append(body)
 
-        logger.info(f"Created body: {body}")
+        logger.info(f"Created: {body}")
     logger.info(f"Created {num} bodies")
     logger.info(f"\n")
     return bodies
 
-NUMBER_OF_BODIES = 5
+
+NUMBER_OF_BODIES = 8
 bodies = create_random_bodies(NUMBER_OF_BODIES)
-bounds = Bounds(Dimension2D(0, 0), Dimension2D(1280, 720), 10)
+
+window = pyglet.window.Window(fullscreen=True)
+window.set_caption("N-Body Simulation")
+window_size = window.get_size()
+
+bounds = Bounds(Dimension2D(0, 0), Dimension2D(window_size[0], window_size[1]))
 verlete = Verlet(bodies, 1/60., bounds)
-window = pyglet.window.Window()
-window.set_size(1280, 720)
+
+
 
 @window.event
 def on_draw():
