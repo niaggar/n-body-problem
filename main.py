@@ -37,7 +37,7 @@ def create_random_bodies(num) -> list[Body]:
     return bodies
 
 
-NUMBER_OF_BODIES = 8
+NUMBER_OF_BODIES = 5
 bodies = create_random_bodies(NUMBER_OF_BODIES)
 
 window = pyglet.window.Window(fullscreen=True)
@@ -45,7 +45,7 @@ window.set_caption("N-Body Simulation")
 window_size = window.get_size()
 
 bounds = Bounds(Dimension2D(0, 0), Dimension2D(window_size[0], window_size[1]))
-verlete = Verlet(bodies, 1/60., bounds)
+verlete = Verlet(bodies, 1/1000., bounds)
 
 
 

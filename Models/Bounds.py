@@ -20,24 +20,26 @@ class Bounds:
     def contains(self, point: Dimension2D):
         return self.p1.x <= point.x <= self.p2.x and self.p1.y <= point.y <= self.p2.y
     
-    def get_apparent_velocity(self, position: Dimension2D):
+    def get_apparent_velocity(self, position: Dimension2D, velocity: Dimension2D):
         if self.contains(position):
             return Dimension2D(0, 0)
         else:
             apparent_velocity = Dimension2D(0, 0)
 
             if position.x < self.p1.x:
-                apparent_velocity += self.normal_vector["left"]
+                apparent_velocity.x = -1 * velocity.x
             elif position.x > self.p2.x:
-                apparent_velocity += self.normal_vector["right"]
-            
+                apparent_velocity.x = -1 * velocity.x
+            else:
+                apparent_velocity.x = velocity.x
+
             if position.y < self.p1.y:
-                apparent_velocity += self.normal_vector["bottom"]
+                apparent_velocity.y = -1 * velocity.y
             elif position.y > self.p2.y:
-                apparent_velocity += self.normal_vector["top"]
-            
-            apparent_velocity.x *= 100
-            apparent_velocity.y *= 100
+                apparent_velocity.y = -1 * velocity.y
+            else:
+                apparent_velocity.y = velocity.y
+
             return apparent_velocity
 
     def __str__(self) -> str:

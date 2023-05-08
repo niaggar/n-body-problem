@@ -20,7 +20,7 @@ class Verlet:
     
     def set_potencial_energy(self, potencialModel: Potencial):
         self.potencial = potencialModel
-        self.derivate = Derivate(self.potencial, 0.001)
+        self.derivate = Derivate(self.potencial, 0.0001)
 
     def calculate_aceleration(self) -> list[Dimension2D]:
         acelerations: list[Dimension2D] = []
@@ -55,7 +55,7 @@ class Verlet:
                     v1x = body.velocity.x
                     v1y = body.velocity.y
 
-                    apparent_velocity = self.bounds.get_apparent_velocity(new_position)
+                    apparent_velocity = self.bounds.get_apparent_velocity(new_position, body.velocity)
                     v2x = apparent_velocity.x
                     v2y = apparent_velocity.y
 
@@ -66,7 +66,7 @@ class Verlet:
                     u1.x = (v1x * (m1 - m2) + v2x * (2 * m2)) / (m1 + m2)
                     u1.y = (v1y * (m1 - m2) + v2y * (2 * m2)) / (m1 + m2)
                     body.velocity = u1
-                    continue         
+                    continue
 
             # Calculate the new velocity of the body after a clash
             for other_body in self.list_bodies:
