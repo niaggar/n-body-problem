@@ -17,9 +17,6 @@ class Verlet:
         self.dt = dt
         self.bounds = bounds
         self.potencial = potencial
-
-        print(self.potencial.pot_type)
-
         self.derivate = Derivate(self.potencial, 0.0001)
 
     def calculate_aceleration(self) -> list[Dimension2D]:
