@@ -1,16 +1,14 @@
-INFO:main:Created: Body: Body 0 with mass 1140 and radius 38 at position (0, 0) with velocity (145, 132)
-INFO:main:Created: Body: Body 1 with mass 960 and radius 32 at position (0, 0) with velocity (-156, 154)
-INFO:main:Created: Body: Body 2 with mass 990 and radius 33 at position (0, 0) with velocity (-126, -141)
-INFO:main:Created: Body: Body 3 with mass 1050 and radius 35 at position (0, 0) with velocity (-30, 115)
-INFO:main:Created: Body: Body 4 with mass 630 and radius 21 at position (0, 0) with velocity (52, 179)
-INFO:main:Created 5 bodies
-INFO:main:
-
-INFO:main:Created: Body: Body 0 with mass 1140 and radius 38 at position (1088, 1056) with velocity (30, 118)
-INFO:main:Created: Body: Body 1 with mass 1320 and radius 44 at position (662, 699) with velocity (110, -90)
-INFO:main:Created: Body: Body 2 with mass 1200 and radius 40 at position (290, 517) with velocity (126, 66)
-INFO:main:Created: Body: Body 3 with mass 660 and radius 22 at position (749, 321) with velocity (-50, 74)
-INFO:main:Created: Body: Body 4 with mass 1260 and radius 42 at position (1311, 566) with velocity (-4, 130)
-INFO:main:Created 5 bodies
-INFO:main:
-
+INFO:main:Clash between Body 0 and Body 3
+INFO:main:Clash between Body 2 and Body 1
+INFO:main:Clash between Body 0 and Body 3
+INFO:main:Clash between Body 1 and Body 2
+INFO:main:Clash between Body 1 and Body 2
+INFO:main:Clash between Body 2 and Body 1
+INFO:main:Clash between Body 0 and Body 4
+INFO:main:Clash between Body 3 and Body 4
+INFO:main:Clash between Body 0 and Body 4
+INFO:main:Clash between Body 0 and Body 4
+INFO:main:Clash between Body 0 and Body 4
+INFO:main:Clash between Body 3 and Body 4
+INFO:main:Clash between Body 0 and Body 4
+INFO:main:Clash between Body 0 and Body 4

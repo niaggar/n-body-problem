@@ -20,6 +20,12 @@ class Bounds:
     def contains(self, point: Dimension2D):
         return self.p1.x <= point.x <= self.p2.x and self.p1.y <= point.y <= self.p2.y
     
+    def get_height(self):
+        return self.p2.y - self.p1.y
+    
+    def get_width(self):
+        return self.p2.x - self.p1.x
+
     def get_apparent_velocity(self, position: Dimension2D, velocity: Dimension2D):
         if self.contains(position):
             return Dimension2D(0, 0)

@@ -1,4 +1,6 @@
 import logging
+
+# from Methods import Energy
 from .Dimension2D import Dimension2D
 
 
@@ -12,7 +14,8 @@ class Body:
     velocity: Dimension2D = Dimension2D(0, 0)
     aceleration: Dimension2D = Dimension2D(0, 0)
     path: list = []
-    _distance: float = 0
+    # energy: Energy = None
+    _distance: int = 0
     
     def __init__(self, name: str, mass: float, radius: float, position: Dimension2D, velocity: Dimension2D, color: tuple[float]=(0, 0, 0)):
         self.name = name
@@ -22,6 +25,7 @@ class Body:
         self.velocity = velocity
         self.color = color
         self.path = []
+        # self.energy = Energy(mass, velocity)
 
     def distance(self, other_body):
         return self.position.distance(other_body.position)
@@ -36,6 +40,17 @@ class Body:
         if len(self.path) > 50:
             self.path.pop(0)
 
+    def calculate_kinetic_energy(self):
+        return self.energy.kinetic()
+
+    def calculate_potencial_energy(self, other_body):
+        distance = self.distance(other_body)
+        return self.energy.potencial(distance)
+
+    def calculate_total_energy(self, other_body):
+        distance = self.distance(other_body)
+        return self.energy.total(distance)
+
     def __eq__(self, other):
         if isinstance(other, Body):
             return self.name == other.name
@@ -43,3 +58,5 @@ class Body:
     
     def __str__(self):
         return f"Body: {self.name} with mass {self.mass} and radius {self.radius} at position {self.position} with velocity {self.velocity}"
+    
+

@@ -1,25 +1,25 @@
+import logging
 from Models import Body, Bounds, Dimension2D
 from .Potencial import Potencial
 from .Derivate import Derivate
 
 
 class Verlet:
+    logger = logging.getLogger("main")
     bounds: Bounds = None
     list_bodies: list[Body] = []
     dt: float = 0
     potencial: Potencial = None
     derivate: Derivate = None
 
-    def __init__(self, list_bodies: list, dt: float, bounds: Bounds = None):
+    def __init__(self, list_bodies: list, dt: float, bounds: Bounds = None, potencial: Potencial = None):
         self.list_bodies = list_bodies
         self.dt = dt
         self.bounds = bounds
+        self.potencial = potencial
 
-        pot = Potencial(G = 10000)
-        self.set_potencial_energy(pot)
-    
-    def set_potencial_energy(self, potencialModel: Potencial):
-        self.potencial = potencialModel
+        print(self.potencial.pot_type)
+
         self.derivate = Derivate(self.potencial, 0.0001)
 
     def calculate_aceleration(self) -> list[Dimension2D]:
@@ -33,10 +33,14 @@ class Verlet:
                     self.potencial.M = other_body.mass
                     self.potencial.m = body.mass
 
-                    acel = self.derivate.partial(body.position)
+                    acel = Dimension2D(0, 0)
+                    distance = body.position.distance(other_body.position)
+                    if distance > (body.radius + other_body.radius):
+                        acel = self.derivate.partial(body.position)
+                    
                     body_aceleration.x += -1 * acel.x
                     body_aceleration.y += -1 * acel.y
-            
+
             acelerations.append(body_aceleration)
         
         return acelerations
@@ -73,7 +77,9 @@ class Verlet:
                 if body != other_body:
                     distance = new_position.distance(other_body.position)
                     
-                    if distance < body.radius + other_body.radius:
+                    if distance <= body.radius + other_body.radius:
+                        self.logger.info(f"Clash between {body.name} and {other_body.name}")
+
                         v1x = body.velocity.x
                         v1y = body.velocity.y
                         m1 = body.mass
@@ -109,11 +115,16 @@ class Verlet:
         aceleration_k = self.calculate_aceleration()
         self.calculate_elastic_clash(aceleration_k)
         
+        position_k1 = []
         for body in self.list_bodies:
             body_aceleartion_k = aceleration_k[self.list_bodies.index(body)]
-            body.position.x += body.velocity.x * self.dt + (1/2) * body_aceleartion_k.x * self.dt**2
-            body.position.y += body.velocity.y * self.dt + (1/2) * body_aceleartion_k.y * self.dt**2
-            body.add_path(body.position)
+
+            new_position = Dimension2D(0, 0)
+            new_position.x = body.position.x + body.velocity.x * self.dt + (1/2) * body_aceleartion_k.x * self.dt**2
+            new_position.y = body.position.y + body.velocity.y * self.dt + (1/2) * body_aceleartion_k.y * self.dt**2
+
+            position_k1.append(new_position)
+            body.add_path(new_position)
 
         aceleration_k1 = self.calculate_aceleration()
 
@@ -126,6 +137,8 @@ class Verlet:
 
         for body in self.list_bodies:
             body.aceleration = aceleration_k1[self.list_bodies.index(body)]
+            body.position = position_k1[self.list_bodies.index(body)]
+
 
         return self.list_bodies
     
