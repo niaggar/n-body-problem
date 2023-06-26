@@ -5,11 +5,11 @@ from pyglet import shapes
 
 from Models import Body, Dimension2D, Bounds
 from Methods import Potencial, Verlet
-from Utils import create_random_bodies
+from Utils import create_random_bodies, save_data_to_csv, plot_data
 
 
 class MainWindow(pyglet.window.Window):
-    NUMBER_OF_BODIES = 5
+    NUMBER_OF_BODIES = 10
     bodies: list[Body] = []
     bounds: Bounds = None
     potencial: Potencial = None
@@ -18,12 +18,12 @@ class MainWindow(pyglet.window.Window):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.set_minimum_size(800, 600)
+        # self.set_minimum_size(800, 600)
         self.set_caption("N-Body Simulation")
 
         window_size = self.get_size()
         self.bounds = Bounds(Dimension2D(0, 0), Dimension2D(window_size[0], window_size[1]))
-        self.potencial = Potencial(G = 10000)
+        self.potencial = Potencial(G = 1000)
         self.bodies = create_random_bodies(self.NUMBER_OF_BODIES, self.bounds)
         self.verlete = Verlet(self.bodies, 1/100, self.bounds, self.potencial)
         self.logger = logging.getLogger("main")
@@ -64,6 +64,13 @@ class MainWindow(pyglet.window.Window):
         elif symbol == key.R:
             self.bodies = create_random_bodies(self.NUMBER_OF_BODIES, self.bounds)
             self.verlete = Verlet(self.bodies, 1/100, self.bounds, self.potencial)
+        elif symbol == key.S:
+            route = "D:\\projects\\n-bodys-problem\\kinetic_energy_data.csv"
+            save_data_to_csv(route, self.verlete.kinetic_energy_data)
+        elif symbol == key.E:
+            route = "D:\\projects\\n-bodys-problem\\kinetic_energy_data.csv"
+            plot_data(route, "Kinetic Energy", "Time", "Energy")
+
 
             
     

@@ -1,6 +1,6 @@
 import logging
 
-# from Methods import Energy
+from .Energy import Energy
 from .Dimension2D import Dimension2D
 
 
@@ -14,7 +14,7 @@ class Body:
     velocity: Dimension2D = Dimension2D(0, 0)
     aceleration: Dimension2D = Dimension2D(0, 0)
     path: list = []
-    # energy: Energy = None
+    energy: Energy = None
     _distance: int = 0
     
     def __init__(self, name: str, mass: float, radius: float, position: Dimension2D, velocity: Dimension2D, color: tuple[float]=(0, 0, 0)):
@@ -25,7 +25,7 @@ class Body:
         self.velocity = velocity
         self.color = color
         self.path = []
-        # self.energy = Energy(mass, velocity)
+        self.energy = Energy(mass, velocity)
 
     def distance(self, other_body):
         return self.position.distance(other_body.position)

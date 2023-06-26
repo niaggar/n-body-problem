@@ -8,9 +8,15 @@ class Verlet:
     logger = logging.getLogger("main")
     bounds: Bounds = None
     list_bodies: list[Body] = []
+    
+    actual_time: float = 0
     dt: float = 0
+    
     potencial: Potencial = None
     derivate: Derivate = None
+    
+    kinetic_energy_data = []
+
 
     def __init__(self, list_bodies: list, dt: float, bounds: Bounds = None, potencial: Potencial = None):
         self.list_bodies = list_bodies
@@ -95,22 +101,19 @@ class Verlet:
                         body.velocity = u1
                         other_body.velocity = u2
 
-    def calculate_energy(self) -> float:
+    def calculate_kinetic_energy(self, time) -> None:
         energy = 0
         for body in self.list_bodies:
-            energy += (body.mass * body.velocity.x**2) / 2
-            energy += (body.mass * body.velocity.y**2) / 2
-
-            for other_body in self.list_bodies:
-                if body != other_body:
-                    distance = body.position.distance(other_body.position)
-                    energy += -1 * self.potencial.calculate(distance)
+            energy += body.calculate_kinetic_energy()
         
-        return energy
+        self.kinetic_energy_data.append({ "x": time, "y": energy })
 
     def update(self) -> list[Body]:
         aceleration_k = self.calculate_aceleration()
+
+        self.actual_time += self.dt
         self.calculate_elastic_clash(aceleration_k)
+        self.calculate_kinetic_energy(self.actual_time)
         
         position_k1 = []
         for body in self.list_bodies:
